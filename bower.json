@@ -1,0 +1,25 @@
+{
+  "name": "react-workshop",
+  "version": "0.0.2",
+  "homepage": "https://github.com/DBC-Deploy/react-backbone-workshop",
+  "authors": [
+    "Ed Shadi <edshadi@gmail.com>"
+  ],
+  "description": "React Workshop",
+  "main": "./js/components/app.js",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "react-form-for-object": "~1.1.0",
+    "jquery": "~2.1.3",
+    "bootstrap": "~3.3.2",
+    "react": "~0.12.2"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "name": "react-workshop",
+  "version": "0.0.2",
+  "description": "React Workshop",
+  "main": "./js/components/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ed Shadi",
+  "license": "ISC",
+  "devDependencies": {
+    "browserify": "^8.1.3",
+    "del": "^1.1.1",
+    "gulp": "^3.8.10",
+    "reactify": "^1.0.0",
+    "vinyl-source-stream": "^1.0.0"
+  }
+}
