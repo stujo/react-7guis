@@ -1,22 +1,28 @@
 var FlightBooker = React.createClass({
   getInitialState: function() {
     return {
-      flightType: this.props.flightType
+      flightType: this.props.flightType,
+      flightDetails: "No flights booked"
     };
   },
   render: function() {
     return (
-      <FlightForm
-        bookFlight={this.bookFlight}
-        selectFlightType={this.selectFlightType}
-        isTwoWayFlight={this.isTwoWayFlight()} />
+      <div className="flight-booker">
+        <FlightForm
+          bookFlight={this.bookFlight}
+          selectFlightType={this.selectFlightType}
+          isTwoWayFlight={this.isTwoWayFlight()} />
+        <div>{this.state.flightDetails}</div>
+      </div>
     );
   },
   selectFlightType: function(e) {
     this.setState({ flightType: e.target.value });
   },
   bookFlight: function(data) {
-    console.log("Travel Dates: ", data.startDate, data.endDate)
+    var flightDetails = "Travel Dates: From " + data.startDate;
+    if(data.endDate) flightDetails += " To: " + data.endDate;
+    this.setState({flightDetails: flightDetails});
   },
   isTwoWayFlight: function() {
     return this.state.flightType === 'two-way';
@@ -28,7 +34,7 @@ var FlightForm = React.createClass({
   render: function() {
     var todayDate = new Date().toLocaleDateString();
     return (
-      <div className="flight-booker">
+      <div className="flight-form">
         <FlightTypeSelector selectFlightType={this.props.selectFlightType} />
         <form onSubmit={this.handleSubmit}>
           <input ref="startDate" type="text" defaultValue={todayDate} />

@@ -1,22 +1,28 @@
 var FlightBooker = React.createClass({displayName: "FlightBooker",
   getInitialState: function() {
     return {
-      flightType: this.props.flightType
+      flightType: this.props.flightType,
+      flightDetails: "No flights booked"
     };
   },
   render: function() {
     return (
-      React.createElement(FlightForm, {
-        bookFlight: this.bookFlight, 
-        selectFlightType: this.selectFlightType, 
-        isTwoWayFlight: this.isTwoWayFlight()})
+      React.createElement("div", {className: "flight-booker"}, 
+        React.createElement(FlightForm, {
+          bookFlight: this.bookFlight, 
+          selectFlightType: this.selectFlightType, 
+          isTwoWayFlight: this.isTwoWayFlight()}), 
+        React.createElement("div", null, this.state.flightDetails)
+      )
     );
   },
   selectFlightType: function(e) {
     this.setState({ flightType: e.target.value });
   },
   bookFlight: function(data) {
-    console.log("Travel Dates: ", data.startDate, data.endDate)
+    var flightDetails = "Travel Dates: From " + data.startDate;
+    if(data.endDate) flightDetails += " To: " + data.endDate;
+    this.setState({flightDetails: flightDetails});
   },
   isTwoWayFlight: function() {
     return this.state.flightType === 'two-way';
@@ -28,7 +34,7 @@ var FlightForm = React.createClass({displayName: "FlightForm",
   render: function() {
     var todayDate = new Date().toLocaleDateString();
     return (
-      React.createElement("div", {className: "flight-booker"}, 
+      React.createElement("div", {className: "flight-form"}, 
         React.createElement(FlightTypeSelector, {selectFlightType: this.props.selectFlightType}), 
         React.createElement("form", {onSubmit: this.handleSubmit}, 
           React.createElement("input", {ref: "startDate", type: "text", defaultValue: todayDate}), 
