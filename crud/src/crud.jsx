@@ -75,8 +75,8 @@ var UserForm = React.createClass({
       <div className="user-form">
         <form onSubmit={this.handleSubmit}>
           <input ref="id" type="hidden" value={this.props.selected.id} />
-          <input ref="firstName" type="text" defaultValue={this.props.selected.firstName} />
-          <input ref="lastName" type="text" defaultValue={this.props.selected.lastName} />
+          <input ref="firstName" type="text" defaultValue={this.props.selected.firstName} placeholder="First Name" />
+          <input ref="lastName" type="text" defaultValue={this.props.selected.lastName} placeholder="Last Name" />
           <input type="submit" value={this.submitValue()} />
         </form>
       </div>
@@ -91,7 +91,7 @@ var UserForm = React.createClass({
     firstName.value = lastName.value = '';
   },
   submitValue: function() {
-    return this.props.selected ? "Update" : "Create";
+    return this.props.selected.id ? "Update" : "Create";
   }
 });
 
