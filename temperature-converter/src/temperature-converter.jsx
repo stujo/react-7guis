@@ -1,4 +1,9 @@
 var TemperatureConverter = React.createClass({
+  getInitialState: function() {
+    return {
+      converted: 0
+    };
+  },
   render: function() {
     return (
       <div className="temperature-converter">
@@ -7,6 +12,7 @@ var TemperatureConverter = React.createClass({
           <input ref="celsius" type="text" name="c" placeholder="Celsius" />
           <input type="submit" value="convert" />
         </form>
+        <div>{this.state.converted}</div>
       </div>
     );
   },
@@ -14,10 +20,13 @@ var TemperatureConverter = React.createClass({
     e.preventDefault();
     var fahrenheit = this.refs.fahrenheit.getDOMNode();
     var celsius = this.refs.celsius.getDOMNode();
+    var converted;
     if(f = fahrenheit.value) {
-      console.log(this.fToC(f));
+      converted = Math.floor(this.fToC(f));
+      this.setState({ converted: converted+" C" })
     } else if(c = celsius.value) {
-      console.log(this.cToF(c));
+      converted = Math.floor(this.cToF(c));
+      this.setState({ converted: converted+" F" })
     } else {
       alert("You need to enter something");
     }
