@@ -1,1 +1,4 @@
 .module-cache
+npm-debug.log
+counter/build/.module-cache
+
