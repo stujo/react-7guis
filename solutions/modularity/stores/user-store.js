@@ -1,3 +1,6 @@
+var $ = require('jquery');
+var Firebase = require('firebase');
+
 var UserStore = {
   fb: new Firebase('https://backbonereact.firebaseio.com/users'),
   CHANGE_EVENT: 'change',
@@ -56,3 +59,4 @@ var UserStore = {
       s4() + '-' + s4() + s4() + s4();
   }
 }
+module.exports = UserStore;

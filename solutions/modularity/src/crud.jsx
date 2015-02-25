@@ -2,6 +2,7 @@ var React = require('react');
 var User = require('./user.jsx');
 var UserForm = require('./user-form.jsx');
 var SearchForm = require('./search-form.jsx');
+var UserStore = require('../stores/user-store');
 
 var Crud = React.createClass({
   getInitialState: function() {
