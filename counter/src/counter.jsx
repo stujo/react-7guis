@@ -1,18 +1,32 @@
 var Counter = React.createClass({
+  getDefaultProps: function(){
+     return {incrementBy: 1, startValue : 0}
+  },
+  getInitialState: function(){
+    return { value: this.props.startValue };
+  },
   render : function(){
     return(
-<div className="counter">
-<a href="#" onClick={this.handleClick}>click</a>
- <span>0</span>
+<div>
+<a href="#" onClick={this.increment}>click</a>
+ <span>{this.state.value}</span>
+<a href="#" onClick={this.resetValue}>reset</a>
 </div>
       );
   },
-  handleClick : function(e){
+  increment : function(e){
     e.preventDefault();
-    console.log(e);
+    this.setState( { value: this.state.value + this.props.incrementBy } )
+  },
+  resetValue : function(e){
+    e.preventDefault();
+    this.setState( { value: this.props.startValue } )
   }
 });
 
 window.onload = function(){
-  React.render(<Counter />, document.body);
+  var divs = document.querySelectorAll('.counter');
+  for (var i = divs.length - 1; i >= 0; i--) {
+    React.render(<Counter incrementBy={i + 1} />, divs[i]);
+  };
 }
